@@ -1,3 +1,4 @@
+import { ApiError } from "@/lib/api-error";
 import { connection } from "next/server";
 
 type Post = {
@@ -10,16 +11,16 @@ export default async function RecentPostsPreview() {
 
   // Intentional learning simulation: delay the preview by 2 seconds
   // so its Suspense fallback is visible during the demonstration.
-  
+
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
   try {
     const response = await fetch(
-      "https://jsonplaceholder.typicode.com/posts?userId=1"
+      "https://jsonplaceholder.typicode.com/posts?userId=1",
     );
 
     if (!response.ok) {
-      throw new Error("Failed to fetch recent posts");
+      throw new ApiError("The request failed.", response.status);
     }
 
     const posts: Post[] = await response.json();

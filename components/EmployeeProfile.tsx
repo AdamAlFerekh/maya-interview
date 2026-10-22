@@ -1,3 +1,5 @@
+import { ApiError } from "@/lib/api-error";
+
 type Employee = {
   name: string;
   email: string;
@@ -13,7 +15,10 @@ export default async function EmployeeProfile() {
     );
 
     if (!response.ok) {
-      throw new Error("Failed to fetch employee data");
+      throw new ApiError(
+        "The employee profile request failed.",
+        response.status,
+      );
     }
 
     const employee: Employee = await response.json();
@@ -32,11 +37,26 @@ export default async function EmployeeProfile() {
         </p>
       </section>
     );
-  } catch {
+  } catch (error) {
+    if (error instanceof ApiError) {
+      return (
+        <section>
+          <h2>Employee Profile</h2>
+          <p>
+            Unable to load the employee profile (HTTP {error.status}). Please
+            try again later.
+          </p>
+        </section>
+      );
+    }
+
     return (
       <section>
         <h2>Employee Profile</h2>
-        <p>Unable to load the employee profile. Please try again later.</p>
+        <p>
+          Unable to reach the employee service. Please check your connection and
+          try again later.
+        </p>
       </section>
     );
   }

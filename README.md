@@ -34,3 +34,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Demo scenarios
+
+The Explore All Posts section includes a scenario selector for
+demonstrating request states.
+
+- **Success:** makes a real JSONPlaceholder request.
+- **Slow:** waits two seconds, then makes a real JSONPlaceholder request.
+- **HTTP error:** simulates a local HTTP 503 response.
+- **Empty:** simulates a successful response containing an empty array.
+
+The HTTP error and empty responses are created locally using
+the Response API. They are demonstrations of response handling,
+not responses returned by JSONPlaceholder.
