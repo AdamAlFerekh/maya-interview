@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import EmployeeProfile from "@/components/EmployeeProfile";
 import RecentPostsPreview from "@/components/RecentPostsPreview";
+import AllPosts from "@/components/AllPosts";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       >
         <RecentPostsPreview />
       </Suspense>
+      <AllPosts />
     </main>
   );
 }
