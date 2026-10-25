@@ -120,7 +120,7 @@ export default function AllPosts() {
       {isLoading && <p role="status">Loading posts...</p>}
 
       {!isLoading && status === "idle" && (
-        <p>Click Load posts to retrieve the employee's posts.</p>
+        <p>Click Load posts to retrieve the employee&apos;s posts.</p>
       )}
 
       {!isLoading && status === "error" && <p role="alert">{errorMessage}</p>}

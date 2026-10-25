@@ -1,50 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Adam Al Ferekh
+
+# Maya Interview — Next.js
+
+A learning project built with Next.js, TypeScript, and the App Router. It demonstrates server-side data fetching, client-side interactions, Suspense loading states, and API error handling using the [JSONPlaceholder API](https://jsonplaceholder.typicode.com/).
+
+## Features
+
+- **Employee Profile:** Fetches and displays an employee's name, email, and company.
+- **Recent Posts Preview:** Fetches posts on the server and uses React Suspense to display a loading fallback.
+- **Explore All Posts:** Loads posts on demand when the user clicks a button.
+- **Request States:** Handles loading, success, empty responses, HTTP errors, and network failures.
+- **Custom API Errors:** Uses a custom `ApiError` class to preserve HTTP status information.
 
 ## Getting Started
 
-First, run the development server:
+### Requirements
+
+- Node.js
+- npm
+
+### Installation
+
+Clone the repository and navigate to the project directory:
+
+```bash
+git clone https://github.com/AdamAlFerekh/maya-interview.git
+cd maya-interview
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo Scenarios
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The **Explore All Posts** section includes a scenario selector for testing different request states.
 
-## Learn More
+- **Success:** Makes a real request to JSONPlaceholder.
+- **Slow:** Waits two seconds, then makes a real request to JSONPlaceholder.
+- **HTTP Error:** Simulates a local HTTP 503 response.
+- **Empty:** Simulates a successful response containing an empty array (`[]`).
 
-To learn more about Next.js, take a look at the following resources:
+The HTTP error and empty responses are created locally using the JavaScript `Response` API. They demonstrate how the application handles different responses; they are not responses returned by JSONPlaceholder.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To test recovery, select **HTTP Error** and load the posts. Then select **Success** and retry the request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The Recent Posts Preview also uses an intentional two-second delay to demonstrate its Suspense loading fallback.
 
-## Deploy on Vercel
+## Testing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Run ESLint:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run lint
+```
 
-## Demo scenarios
+Run the production build:
 
-The Explore All Posts section includes a scenario selector for
-demonstrating request states.
+```bash
+npm run build
+```
 
-- **Success:** makes a real JSONPlaceholder request.
-- **Slow:** waits two seconds, then makes a real JSONPlaceholder request.
-- **HTTP error:** simulates a local HTTP 503 response.
-- **Empty:** simulates a successful response containing an empty array.
+See [`docs/TESTING.md`](docs/TESTING.md) for test cases, observed results, and screenshots.
 
-The HTTP error and empty responses are created locally using
-the Response API. They are demonstrations of response handling,
-not responses returned by JSONPlaceholder.
+## Project Documentation
+
+- [`docs/INTERVIEW.md`](docs/INTERVIEW.md) — Implementation decisions, final explanations, and AI reflection.
+- [`docs/TESTING.md`](docs/TESTING.md) — Testing evidence and results.
+
+## Technologies
+
+- [Next.js](https://nextjs.org/) ... "next": "16.4.2",
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [JSONPlaceholder](https://jsonplaceholder.typicode.com/)
