@@ -12,12 +12,11 @@ export default async function RecentPostsPreview() {
 
   // Intentional learning simulation: delay the preview by 2 seconds
   // so its Suspense fallback is visible during the demonstration.
+  await connection();
 
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
   try {
-    await connection();
-
     const response = await fetch(
       "https://jsonplaceholder.typicode.com/posts?userId=1",
     );

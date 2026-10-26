@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ApiError } from "@/lib/api-error";
 
 type Post = {
@@ -18,8 +18,13 @@ export default function AllPosts() {
   const [isLoading, setIsLoading] = useState(false);
   const [posts, setPosts] = useState<Post[]>([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const requestInProgress = useRef(false);
 
   async function loadPosts() {
+    if (requestInProgress.current) return;
+
+    requestInProgress.current = true;
+
     setIsLoading(true);
     setStatus("idle");
     setErrorMessage("");
@@ -89,6 +94,7 @@ export default function AllPosts() {
       setStatus("error");
     } finally {
       // Loading always ends, whether the request succeeds or fails.
+      requestInProgress.current = false;
       setIsLoading(false);
     }
   }
@@ -138,11 +144,9 @@ export default function AllPosts() {
         </ul>
       )}
 
-      {!isLoading && (
-        <button type="button" onClick={loadPosts}>
-          {status === "error" ? "Retry" : "Load posts"}
-        </button>
-      )}
+      <button type="button" onClick={loadPosts}>
+        {isLoading ? "Loading..." : status === "error" ? "Retry" : "Load posts"}
+      </button>
     </section>
   );
 }

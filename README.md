@@ -26,6 +26,7 @@ Clone the repository and navigate to the project directory:
 ```bash
 git clone https://github.com/AdamAlFerekh/maya-interview.git
 cd maya-interview
+git switch assignment-3-maya-interview
 ```
 
 Install dependencies:
